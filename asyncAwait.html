@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>User Details</h1>
+    <button id="btn" onclick="getData()" class="btn btn-warning">get Data</button><br>
+    <div class="container" id="target">
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script>
+        let div = document.getElementById('target')
+
+        function getData() {
+            div.innerHTML = "";
+            const URL = "https://jsonplaceholder.typicode.com/users";
+            fetch(URL).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data)
+                data.forEach(ele => {
+                   let div = document.createElement("div");
+                   div.className = "row border mt-2";
+                   div.innerHTML = `
+                    ${ele.name}
+                   `
+
+                })
+               
+            }).catch(rej => {
+                console.log(rej);
+            })
+        }
+    </script>
+</body>
+
+</html>
